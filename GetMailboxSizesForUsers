@@ -1,0 +1,16 @@
+Connect-ExchangeOnline
+
+
+ get-mailbox -ResultSize unlimited | foreach {
+
+ $MailUser = $_.UserPrincipalName
+
+ $stats= Get-MailboxStatistics $MailUser
+ New-Object -TypeName PSObject -Property @{
+ DisplayName = $stats.DisplayName
+ ItemCount = $stats.ItemCount
+ MailboxSize = $stats.TotalItemSize
+ Email = $MailUser
+  }
+ 
+ } | Export-Csv -Path C:\Users\bnauta\Desktop\MailboxSizes.csv
