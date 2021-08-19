@@ -1,0 +1,4 @@
+ Connect-MsolService
+ 
+ Get-MsolGroupMember -GroupObjectID c8b1ea27-a4ce-4ad6-8d5e-f7b6a4e8ef84 -MemberObjectTypes User -All |Get-MsolUser | Where {$_.UserPrincipalName} | Select UserPrincipalName, DisplayName, @{n="MFA";e={$_.StrongAuthenticationRequirements.State}}, @{n="Methods"; e={($_.StrongAuthenticationMethods).MethodType}}, @{n="Default Method"; e={($_.StrongAuthenticationMethods).IsDefault}} | Export-csv -path C:\Users\bnauta\Desktop\MFAStatus.csv
+PS C:\Users\bnauta\desktop>
