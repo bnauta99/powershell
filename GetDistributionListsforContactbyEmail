@@ -1,0 +1,1 @@
+PS C:\Users\bnauta> Get-DistributionGroup | where { (Get-DistributionGroupMember $_.Name | foreach {$_.PrimarySmtpAddress}) -contains "email@emaildomain.com"} | Format-list displayname, primarysmtpaddress
