@@ -1,1 +1,12 @@
-PS C:\Users\bnauta> Get-DistributionGroup | where { (Get-DistributionGroupMember $_.Name | foreach {$_.PrimarySmtpAddress}) -contains "email@emaildomain.com"} | Format-list displayname, primarysmtpaddress
+
+$Contact = $null;
+$Contact = Get-DistributionGroup| where { (Get-DistributionGroupMember $_.Name| foreach {$_.PrimarySmtpAddress}) -contains "bnauta@regalfin.com"}
+
+If ($Contact -ne $null)
+{
+$Contact | Format-list displayname, primarysmtpaddress;
+}
+Else
+{
+write-host "No Groups Found";
+}
