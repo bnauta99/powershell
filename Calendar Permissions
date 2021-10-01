@@ -1,0 +1,7 @@
+Add-MailboxFolderPermission -Identity address@domain.com:\Calendar -User newaddress@domain.com -AccessRights Editor 
+
+get-mailboxfolderpermission -Identity address@domain.com:\Calendar
+
+ Remove-MailboxFolderPermission -Identity address@domain.com:\Calendar -User newaddress@domain.com
+ 
+ Set-MailboxFolderPermission -Identity address@domain.com:\Calendar -User newaddress@domain.com -AccessRights Editor      
