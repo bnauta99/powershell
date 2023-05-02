@@ -1,0 +1,14 @@
+# Path of folder to search
+$parentPath = "\\mserver\users"
+
+$subFolders = Get-ChildItem -Path $parentPath -Directory
+
+# Loop looking for MP3's
+foreach ($folder in $subFolders) {
+    $mp3Files = Get-ChildItem -Path $folder.FullName -Filter *.mp3 -Recurse
+    
+    # Output path - Remove | if you just want to see the results now
+    if ($mp3Files.Count -gt 0) {
+        Write-Output "Folder with MP3 files: $($folder.FullName)" | Export-csv c:\mp3folders.csv
+    }
+}
