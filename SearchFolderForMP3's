@@ -1,14 +1,19 @@
-# Path of folder to search
-$parentPath = "\\mserver\users"
 
-$subFolders = Get-ChildItem -Path $parentPath -Directory
+# Set the path to the parent folder you want to search
+$parentPath = "\\SERVERTHATYOUWANTTOSEARCH\users"
 
-# Loop looking for MP3's
+$subFolders = Get-ChildItem -Path $parentPath -Directory -ErrorAction SilentlyContinue
+
+# Loop
 foreach ($folder in $subFolders) {
-    $mp3Files = Get-ChildItem -Path $folder.FullName -Filter *.mp3 -Recurse
-    
-    # Output path - Remove | if you just want to see the results now
-    if ($mp3Files.Count -gt 0) {
-        Write-Output "Folder with MP3 files: $($folder.FullName)" | Export-csv c:\mp3folders.csv
+    try {
+        $mp3Files = Get-ChildItem -Path $folder.FullName -Filter *.mp3 -Recurse
+
+        # If there are .mp3 files in the folder, output the folder path
+        if ($mp3Files.Count -gt 0) {
+            Write-Output "Folder with MP3 files: $($folder.FullName)"
+        }
+    } catch [System.UnauthorizedAccessException] {
+        Write-Output "Skipping folder: $($folder.FullName)"
     }
 }
