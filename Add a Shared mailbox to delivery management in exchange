@@ -1,0 +1,3 @@
+$groupname = "NAME OF GROUP YOU ARE ADDING THE SHARED MAILBOX TO"
+>> Set-DistributionGroup $groupname  -AcceptMessagesOnlyFrom((Get-DistributionGroup  $groupname).AcceptMessagesOnlyFrom + "NAME OF SHARED MAILBOX YOU ARE ADDING TO GROUP")
+[PS] C:\Windows\system32>
