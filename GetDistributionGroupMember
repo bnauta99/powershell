@@ -1,1 +1,10 @@
-Get-DistributionGroupMember -Identity "Distro List Name" | export-csv C:\Users\bnauta\Desktop\wmc.csv | FT displayname, primarysmtpaddress
+
+
+#This will pull it up in a CSV
+
+Get-DistributionGroupMember -Identity "Distribution group name" | Select-Object DisplayName, PrimarySmtpAddress | Export-Csv -Path C:\Users\bnauta\Desktop\name of your CSV.csv -NoTypeInformation
+
+
+#This will pull it up on the command line
+
+Get-DistributionGroupMember -Identity "Distro List Name" | FT displayname, primarysmtpaddress
