@@ -1,0 +1,4 @@
+Works for endpoint and server
+
+get-tlsciphersuite | FL Name, Hash, cipher
+
