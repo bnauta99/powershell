@@ -1,0 +1,6 @@
+
+# Gets a list of everyone and their department
+# Run in Active directory module for powershell
+
+
+ get-aduser -filter {Enabled -eq $true} -properties displayname, department, mail | select displayname, department, mail | export-csv c:\users\admin-ben\desktop\listft.csv
