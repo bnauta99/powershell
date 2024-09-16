@@ -1,0 +1,5 @@
+Import-Module ActiveDirectory
+$username = "USERNAME"
+$user = Get-ADUser -Identity $username -Properties MemberOf
+$groups = Get-ADPrincipalGroupMembership $user
+$groups | Select-Object Name
